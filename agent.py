@@ -6,7 +6,7 @@ import json
 load_dotenv()
 client = anthropic.Anthropic()
 model = "claude-opus-5-5"
-max_tokens = 20000
+max_tokens = 10000
 
 # %%
 def create_user_message(text):
@@ -33,7 +33,7 @@ def run_turn(messages, system=None):
 
 
 # %%
-system = "respond like a pirate"
+system = None # "respond like a pirate"
 messages = []
 
 messages.append(create_user_message(text="What is Quantum Computing.  Answer in one sentence."))
@@ -44,7 +44,7 @@ messages.append(create_assistant_message(content=response.content))
 
 messages.append(create_user_message(text="add another sentence to expand further"))
 
-content = run_turn(messages, system)
+response = run_turn(messages, system)
 
 messages.append(create_assistant_message(content=response.content))
 
