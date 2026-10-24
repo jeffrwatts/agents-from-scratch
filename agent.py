@@ -33,23 +33,23 @@ def run_turn(messages, system=None):
 
 
 # %%
-system = None # "respond like a pirate"
+system = "You are a concise assistant in an ongoing conversation. When asked to add to an answer, reply with only the new content."
 messages = []
 
-messages.append(create_user_message(text="What is Quantum Computing.  Answer in one sentence."))
+while True:
+    input_text = input("You: ")
 
-response = run_turn(messages, system)
+    if (input_text.strip().lower() == "quit"):
+        break
 
-messages.append(create_assistant_message(content=response.content))
+    messages.append(create_user_message(input_text))
 
-messages.append(create_user_message(text="add another sentence to expand further"))
+    response = run_turn(messages, system)
 
-response = run_turn(messages, system)
+    output_text = "".join(block.text for block in response.content if block.type == "text")
 
-messages.append(create_assistant_message(content=response.content))
+    print(output_text)
 
-# %%
-print(json.dumps(messages, indent=2))
-
+    messages.append(create_assistant_message(content=response.content))
 
 # %%
