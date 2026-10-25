@@ -42,7 +42,7 @@ while True:
     if (input_text.strip().lower() == "quit"):
         break
 
-    if (input_text == ""):
+    if (input_text.strip() == ""):
         continue
 
     messages.append(create_user_message(input_text))
