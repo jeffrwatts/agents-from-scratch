@@ -33,7 +33,7 @@ def run_turn(messages, system=None):
 
 
 # %%
-system = "You are a concise assistant in an ongoing conversation. When asked to add to an answer, reply with only the new content."
+system = "Use a concise narrative style when describing something.  Do not repeat text already given unless asked."
 messages = []
 
 while True:
@@ -41,6 +41,9 @@ while True:
 
     if (input_text.strip().lower() == "quit"):
         break
+
+    if (input_text == ""):
+        continue
 
     messages.append(create_user_message(input_text))
 
